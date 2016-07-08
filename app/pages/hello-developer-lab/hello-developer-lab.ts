@@ -17,7 +17,7 @@ export class HelloDeveloperLab {
         // taking the contents of the request, and pinging back our specific device with the link
         // we provide. once we receive the notification, we action the contents by opening the link
         // in a web view using the inappbrowser plugin provided by appworks.js
-
+        //
         // request format to echo service:
         // {
         //   "clientId": "<your client id>",
@@ -34,8 +34,13 @@ export class HelloDeveloperLab {
                 appId: 'DeveloperLab2016'
             });
 
-            headers.append('Authorization', `Bearer ${authResponse.accessToken}`);
             headers.append('Content-Type', 'application/json');
+
+            if (authResponse.accessToken) {
+                headers.append('Authorization', `Bearer ${authResponse.accessToken}`);
+            } else if (authResponse.otagtoken) {
+                headers.append('otagtoken', authResponse.otagtoken);
+            }
 
             this.http.post(endpoint, request, {headers: headers}).subscribe();
         });
