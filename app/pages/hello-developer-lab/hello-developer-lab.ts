@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {AWService} from "../../services/aw-service";
-import {Http, Headers, Response} from "@angular/http";
-
+import {Http, Headers} from "@angular/http";
 
 @Component({
     templateUrl: 'build/pages/hello-developer-lab/hello-developer-lab.html',

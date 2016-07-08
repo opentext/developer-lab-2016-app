@@ -4,7 +4,6 @@ import {HelloDeveloperLab} from "./pages/hello-developer-lab/hello-developer-lab
 import {NotificationManager} from "./services/notification-manager";
 import {AWService} from "./services/aw-service";
 
-
 @Component({
     templateUrl: 'build/app.html',
     providers: [NotificationManager, AWService]
