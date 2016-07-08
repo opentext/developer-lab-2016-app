@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AWService} from "../../services/aw-service";
-import {Http} from "@angular/http";
+import {Http, Headers, Response} from "@angular/http";
 
 
 @Component({
@@ -12,15 +12,32 @@ export class HelloDeveloperLab {
 
     }
 
-    onPageDidEnter() {
-        // lifecycle hook -- dom content has loaded
-        // TODO make http request to echo service to initiate a push notification
-        setTimeout(() => {
-            this.appworks.auth.authenticate().then((authResponse:any) => {
-                console.log(authResponse);
-                // TODO use client id contained in authResponse to form request to echo service
-                // echo service uses this information to send a notification to the appropriate client
+    sendNotificationRequest() {
+        // this method will utilize the echo service to initiate a push notification from GCM,
+        // taking the contents of the request, and pinging back our specific device with the link
+        // we provide. once we receive the notification, we action the contents by opening the link
+        // in a web view using the inappbrowser plugin provided by appworks.js
+
+        // request format to echo service:
+        // {
+        //   "clientId": "<your client id>",
+        //   "appId": "<name of your app>",
+        //   "link": "<the link you provide>"
+        // }
+        //
+        this.appworks.auth.authenticate().then((authResponse:any) => {
+            let endpoint = `${authResponse.gatewayUrl}/notifications-echo-service/api/echo/`;
+            let headers = new Headers();
+            let request = JSON.stringify({
+                clientId: authResponse.clientId,
+                link: 'https://twitter.com/Kurt_Vonnegut/status/751325711282036736',
+                appId: 'DeveloperLab2016'
             });
-        }, 8000);
+
+            headers.append('Authorization', `Bearer ${authResponse.accessToken}`);
+            headers.append('Content-Type', 'application/json');
+
+            this.http.post(endpoint, request, {headers: headers}).subscribe();
+        });
     }
 }
