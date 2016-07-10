@@ -58,6 +58,6 @@ export class NotificationManager {
     }
 
     private enable(callback:any) {
-        this.appworks.notifications.enable(callback);
+        this.appworks.notifications.enableInAppNotifications(callback);
     }
 }

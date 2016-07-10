@@ -44,7 +44,7 @@ export class AWService {
 
         this.notifications = {
             // catch real time push notifications
-            enable: (callback?:any) => {
+            enableInAppNotifications: (callback?:any) => {
                 let manager = new Appworks.AWNotificationManager();
                 manager.enablePushNotifications((notification:any) => {
                     if (callback) {
