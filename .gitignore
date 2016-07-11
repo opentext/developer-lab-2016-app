@@ -7,6 +7,7 @@ node_modules/
 www/build/
 platforms/
 plugins/
+package/
 npm-debug.log
 *.swp
 .DS_Store

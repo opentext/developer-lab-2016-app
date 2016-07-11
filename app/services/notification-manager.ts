@@ -19,7 +19,7 @@ export class NotificationManager {
             this.handleNotification(notification);
         });
 
-        this.enable((notification:any) => {
+        this.enableInAppNotifications((notification:any) => {
             this.handleNotification(notification);
         });
 
@@ -57,7 +57,7 @@ export class NotificationManager {
         this.appworks.notifications.getOpeningNotification(callback);
     }
 
-    private enable(callback:any) {
+    private enableInAppNotifications(callback:any) {
         this.appworks.notifications.enableInAppNotifications(callback);
     }
 }
