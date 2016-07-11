@@ -42,5 +42,10 @@
     }
   ],
   "name": "developerlab2016",
-  "description": "developerLab2016: An Ionic project"
+  "description": "developerLab2016: An Ionic project",
+  "scripts": {
+    "prestart": "npm install",
+    "postinstall": "typings install",
+    "start": "ionic serve"
+  }
 }
