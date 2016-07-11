@@ -45,12 +45,8 @@ export class AWService {
         this.notifications = {
             // catch real time push notifications
             enableInAppNotifications: (callback?:any) => {
-                let manager = new Appworks.AWNotificationManager();
-                manager.enablePushNotifications((notification:any) => {
-                    if (callback) {
-                        callback(notification);
-                    }
-                });
+                // TODO implement notification handler for in-app notifications.
+                // refer to https://github.com/opentext/appworks-js
             },
             // turn off real time push notifications
             disable: () => {
@@ -109,20 +105,8 @@ export class AWService {
             // open a link using the native inappbrowser plugin
             open: (url:string, target?:string, options?:string) => {
                 return new Promise((resolve, reject) => {
-                    let ref;
-                    let webview = new Appworks.AWWebView(resolve, reject);
-
-                    options = options || 'EnableViewPortScale=yes,location=no';
-                    target = target || '_blank';
-
-                    ref = webview.open(url, target, options);
-
-                    ref.addEventListener('exit', resolvePromise);
-
-                    function resolvePromise() {
-                        resolve(true);
-                        ref.removeEventListener('exit', resolvePromise);
-                    }
+                    // TODO implement opening of link in webview
+                    // refer to https://github.com/opentext/appworks-js
                 });
             }
         };

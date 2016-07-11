@@ -28,9 +28,7 @@ export class HelloDeveloperLab {
             let endpoint = `${authResponse.gatewayUrl}/notifications-echo-service/api/echo/`;
             let headers = new Headers();
             let request = JSON.stringify({
-                clientId: authResponse.clientId,
-                link: 'https://twitter.com/Kurt_Vonnegut/status/751325711282036736',
-                appId: 'DeveloperLab2016'
+                // TODO add body of request to echo service
             });
 
             headers.append('Content-Type', 'application/json');
